@@ -2,8 +2,7 @@ class House:
     houses_history = []
     def __new__(cls, *args, **kwargs):
         cls.houses_history.append(args[0])
-        print(*cls.houses_history)
-        return super().__new__(cls)
+        return object().__new__(cls)
     def __init__(self, name, number_of_floors):
         self.name = name
         self.number_of_floors = number_of_floors
@@ -33,7 +32,7 @@ class House:
     def __del__(self):
         print(self.name, 'снесен но останется останется в истроии')
     def __str__(self):
-        return f'ЖК Акация 15: {self.name}, количество этажей: 15'
+        return f'ЖК Акация 15: {self.name}, количество этажей: 15', 'ЖК Матершки 11: {self.name}, количество этажей: 11'
 
 h1 = House('ЖК Эльбрус', 30)
 h2 = House('ЖК Акация', 15)
