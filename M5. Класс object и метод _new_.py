@@ -1,4 +1,9 @@
 class House:
+    houses_history = []
+    def __new__(cls, *args, **kwargs):
+        cls.houses_history.append(args[0])
+        print(*cls.houses_history)
+        return super().__new__(cls)
     def __init__(self, name, number_of_floors):
         self.name = name
         self.number_of_floors = number_of_floors
@@ -25,19 +30,16 @@ class House:
         return self.name >= other.name
     def __ne__(self, other):
         return self.name != other.name
+    def __del__(self):
+        print("ЖК Матрешки снесен, но останется останется в истроии")
+        print("ЖК Эльбрус снесен, но останется останется в истроии")
+        print("ЖК Акации снесен, но останется останется в истроии")
 
     def __str__(self):
         return f'ЖК Акация 15: {self.name}, количество этажей: 15'
+        return f'ЖК Матрешки 11: {self.name}, количевто этажей: 11'
 h1 = House('ЖК Эльбрус', 30)
 h2 = House('ЖК Акация', 15)
+h3 = House('ЖК Матрешки', 11)
 
-print(str(h1))
-print(str(h2))
-print(len(h1))
-print(len(h2))
-print(h1 == h2)
-print(h1 < h2)
-print(h1 <= h2)
-print(h1 > h2)
-print(h1 >= h2)
-print(h1 != h2)
+print(House.houses_history)
